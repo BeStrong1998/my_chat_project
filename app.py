@@ -7,7 +7,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 app = Flask(__name__)
 
 # Настройка базы данных SQLite
-app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
 
 # Создание и описание моделей класса User со своими параметрами
