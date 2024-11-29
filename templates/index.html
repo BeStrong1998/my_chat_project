@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_index.css') }}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">-->
+</head>
+<body>
+<!--
+Reference image: https://telegram.org/file/811140968/3/UfbcOfXv2YU.118417/b230905e577f9cc2de
+
+LICENSE: https://creativecommons.org/licenses/by/3.0/
+-->
+
+<!-- -------- -->
+<!-- MAIN APP -->
+<!-- -------- -->
+<section class="mainApp">
+    <div class="leftPanel">
+        <header>
+            <button class="trigger">
+                <svg viewBox="0 0 24 24">
+                    <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
+                </svg>
+            </button>
+
+            <input class="searchChats" type="search" placeholder="Поиск"/>
+        </header>
+        <div class="chats">
+            <div class="chatButton active">
+                <div class="chatInfo">
+                    <div class="image my-image">
+
+                    </div>
+
+                    <p class="name">
+                        Иван Иванов
+                    </p>
+
+                    <p class="message">Как дела?</p>
+                </div>
+
+                <div class="status onTop">
+                    <p class="date">00:02</p>
+                    <p class="count">10</p>
+                    <i class="material-icons read">done_all</i>
+                    <svg class="fixed" viewBox="0 0 24 24">
+                        <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="chatButton">
+                <div class="chatInfo">
+                    <div class="image">
+
+                    </div>
+
+                    <p class="name">
+                        Группа
+                    </p>
+
+                    <p class="message">Привет!</p>
+                </div>
+
+                <div class="status normal">
+                    <p class="date">Now</p>
+                    <p class="count">42</p>
+                    <i class="material-icons read">done_all</i>
+                    <i class="material-icons fixed">loyalty</i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rightPanel">
+        <div class="topBar">
+            <div class="rightSide">
+                <button class="tbButton search">
+                    <i class="material-icons">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                    </i>
+                </button>
+                <button class="tbButton otherOptions">
+                    <i class="material-icons">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                        </svg>
+                    </i>
+                </button>
+<!--                 <div>-->
+<!--                    <a class="exit-Modal" href="{{ url_for('logout') }}"></a>-->
+<!--                </div>-->
+                <buttun class="tbButton exit">
+                    <i class="material-icons">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                            <a class="exit-Modal" href="{{ url_for('logout') }}"></a>
+                        </svg>
+                    </i>
+                </buttun>
+            </div>
+
+            <div class="leftSide">
+                <p class="chatName">Анна <span>@Anna</span></p>
+                <p class="chatStatus">Online</p>
+            </div>
+        </div>
+
+        <div class="convHistory userBg">
+            <!-- CONVERSATION GOES HERE! -->
+
+            <div class="msg messageReceived">
+                Чувак, почему никто не сделал этого раньше?
+                <span class="timestamp">00:00</span>
+            </div>
+
+            <div class="msg messageSent">
+                Не знаю...
+                <i class="material-icons readStatus">done_all</i>
+                <span class="timestamp">00:01</span>
+            </div>
+
+            <div class="msg messageReceived">
+                Теперь это не имеет значения, я сделал это!
+                <span class="timestamp">00:02</span>
+            </div>
+
+            <div class="msg messageReceived">
+                Надеюсь, кто-нибудь увидит это... Когда-нибудь...
+                <span class="timestamp">00:02</span>
+            </div>
+
+            <div class="msg messageSent">
+                На самом деле, это сделали более 2000 человек.
+                <i class="material-icons readStatus">done</i>
+                <span class="timestamp">00:04</span>
+            </div>
+        </div>
+
+        <div class="replyBar">
+            <button class="attach">
+                <i class="material-icons d45">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16">
+                        <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
+                    </svg>
+                </i>
+            </button>
+
+            <input type="text" class="replyMessage" placeholder="Написать сообщение..."/>
+
+            <div class="emojiBar">
+                <div class="emoticonType">
+                    <button id="panelEmoji">Эмодзи</button>
+                    <button id="panelStickers">Стикеры</button>
+                    <button id="panelGIFs">GIF</button>
+                </div>
+
+                <!-- Emoji panel -->
+                <div class="emojiList">
+                    <button id="smileface" class="pick">
+                    </button>
+                    <button id="grinningface" class="pick"></button>
+                    <button id="tearjoyface" class="pick"></button>
+                    <button id="rofl" class="pick"></button>
+                    <button id="somface" class="pick"></button>
+                    <button id="swfface" class="pick"></button>
+                </div>
+
+                <!-- the best part of telegram ever: STICKERS!! -->
+                <div class="stickerList">
+                    <button id="smileface" class="pick">
+                    </button>
+                    <button id="grinningface" class="pick"></button>
+                    <button id="tearjoyface" class="pick"></button>
+                </div>
+            </div>
+
+            <div class="otherTools">
+                <button class="toolButtons emoji">
+                    <i class="material-icons">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5"/>
+                        </svg>
+                    </i>
+                </button>
+
+                <button class="toolButtons audio">
+                    <i class="material-icons">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
+                            <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0z"/>
+                            <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
+                        </svg>
+                    </i>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ---------------------- -->
+<!-- MENU AND OVERLAY STUFF -->
+<!-- ---------------------- -->
+
+<!-- MENU -->
+<section class="menuWrap">
+    <div class="menu">
+        <div class="me userBg">
+            <div class="image"></div>
+
+            <div class="myinfo">
+                <p class="name">Random Name</p>
+                <p class="phone">+1 12 1234 5678</p>
+            </div>
+
+            <button class="cloud">
+                <i class="material-icons">Закладки</i>
+            </button>
+
+            <button class="settings">
+                <i class="material-icons">Настройки</i>
+            </button>
+        </div>
+        <nav>
+            <button class="ng">
+                <i class="material-icons">&#xE8D3;</i>
+
+                <span>Новая группа</span>
+            </button>
+
+            <button class="nc">
+                <i class="material-icons">&#xE0B6;</i>
+
+                <span>Новый канал</span>
+            </button>
+
+            <button class="cn">
+                <i class="material-icons">&#xE851;</i>
+
+                <span>Мои контакты</span>
+            </button>
+
+            <button class="cl">
+                <i class="material-icons">&#xE0B0;</i>
+
+                <span>История</span>
+            </button>
+
+            <a href="https://telegram.org/faq" target="_blank">
+                <button class="faq">
+                    <i class="material-icons">&#xE000;</i>
+
+                    <span>Поддержка</span>
+                </button>
+            </a>
+
+            <button class="lo">
+                <i class="material-icons">&#xE879;</i>
+
+                <span>Выйти</span>
+            </button>
+        </nav>
+
+<!--        <div class="info">-->
+<!--            <p>Telegram Web</p>-->
+<!--            <p>Ver 0.0.2 - <a href="https://en.wikipedia.org/wiki/Telegram_(messaging_service)">About</a></p>-->
+<!--            <p>Layout coded by: <a href="https://www.github.com/mayrinck">Mayrinck</a></p>-->
+<!--        </div>-->
+    </div>
+</section>
+
+<!-- CONVERSATION OPTIONS MENU -->
+<div class="moreMenu">
+    <button class="option about">See Info</button>
+    <button class="option notify">Disable Notifications</button>
+    <button class="option block">Block User</button>
+</div>
+
+<!-- MOBILE OVERLAY -->
+<section class="switchMobile">
+    <p class="title">Mobile Device Detected</p>
+
+    <p class="desc">Switch to the mobile version for a better performance.</p>
+
+    <a href="https://web.telegram.org/#/login">
+        <button class="okay">OK</button>
+    </a>
+</section>
+
+<!-- PROFILE OPTIONS OVERLAY -->
+<section class="config">
+    <section class="configSect">
+        <div class="profile">
+            <p class="confTitle">Настройки</p>
+
+            <div class="image"></div>
+
+            <div class="side">
+                <p class="name">Random Name</p>
+                <p class="pStatus">Online</p>
+            </div>
+
+            <button class="changePic">Change Profile Picture</button>
+            <button class="edit">Edit Profile Info</button>
+        </div>
+    </section>
+
+    <section class="configSect second">
+
+        <!-- PROFILE INFO SECTION -->
+        <p class="confTitle">Your Info</p>
+
+        <div class="information">
+            <ul>
+                <li>Phone Number: <span class="blue phone">+1 12 1234 5678</span></li>
+                <li>Username: <span class="blue username">@USERNAME</span></li>
+                <li>Profile: <span class="blue">https://t.me/USERNAME</span></li>
+            </ul>
+        </div>
+
+        <!-- NOTIFICATIONS SECTION -->
+        <p class="confTitle">Notifications</p>
+
+        <div class="optionWrapper deskNotif">
+            <input type="checkbox" id="deskNotif" class="toggleTracer" checked>
+
+            <label class="check deskNotif" for="deskNotif">
+                <div class="tracer"></div>
+            </label>
+            <p>Enable Desktop Notifications</p>
+        </div>
+
+        <div class="optionWrapper showSName">
+            <input type="checkbox" id="showSName" class="toggleTracer">
+
+            <label class="check" for="showSName">
+                <div class="tracer"></div>
+            </label>
+            <p>Show Sender Name</p>
+        </div>
+
+        <div class="optionWrapper showPreview">
+            <input type="checkbox" id="showPreview" class="toggleTracer">
+
+            <label class="check" for="showPreview">
+                <div class="tracer"></div>
+            </label>
+            <p>Show Message Preview</p>
+        </div>
+
+        <div class="optionWrapper playSounds">
+            <input type="checkbox" id="playSounds" class="toggleTracer">
+
+            <label class="check" for="playSounds">
+                <div class="tracer"></div>
+            </label>
+            <p>Play Sounds</p>
+        </div>
+
+        <p class="confTitle">Other Settings</p>
+
+        <div class="optionWrapper">
+            <input type="checkbox" id="checkNight" class="toggleTracer">
+
+            <label class="check" for="checkNight">
+                <div class="tracer"></div>
+            </label>
+            <p>Night Mode</p>
+        </div>
+
+    </section>
+</section>
+
+<!-- DARK FRAME OVERLAY -->
+<section class="overlay"></section>
+
+<!-- -------------------------------- -->
+<!-- SPECIFIC FOR CONNECTION WARNINGS -->
+<!-- -------------------------------- -->
+<div class="alerts">
+    Trying to reconnect...
+</div>
+<script src="{{ url_for('static', filename='js/index_script.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
