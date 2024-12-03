@@ -8,7 +8,7 @@ body {
 	background: #419fd9;
 	background-image: url(https://s-media-cache-ak0.pinimg.com/originals/51/ed/c0/51edc046eb80046ee4755ee71d0f19ca.jpg);
 	font-family: 'Open Sans', 'Roboto', 'Ubuntu', sans-serif;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 a {
@@ -404,7 +404,7 @@ nav button > span {
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.8);
+	background: rgba(0, 0, 0, 0.4);
 	z-index: 2;
 	display: none;
 }
@@ -600,7 +600,7 @@ div[class~="onTop"] > .count {
 .rightPanel {
 	float: left;
 	width: calc(100% - 321px);
-	height: 100vh;
+	/*height: 100vh;*/
 	background: #999;
 }
 
@@ -645,18 +645,20 @@ div[class~="onTop"] > .count {
 
 .rightSide {
 	display: inline-block;
+	/*display: block;*/
 	clear: none;
 	float: right;
-	margin-right: 20px;
+	/*margin-right: 10px;*/
 }
 
 .tbButton, .otherTools .toolButtons {
 	width: 50px;
 	height: 50px;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 	background: #FFF;
 	color: #888;
 	border-radius: 100%;
+	display: inline-block;
 }
 
 .tbButton:hover, .otherTools .toolButtons:hover {
@@ -736,7 +738,7 @@ div[class~="onTop"] > .count {
 /* THE REPLY BAR CSS */
 
 .replyBar {
-	width: 100%;
+	/*width: 100%;*/
 	height: 70px;
 	float: left;
 	background: #fff;
@@ -979,8 +981,8 @@ div[class~="onTop"] > .count {
 	opacity: 1;
 }
 
-.closeModal::before,
-.closeModal::after {
+.exit-Modal::before,
+.exit-Modal::after {
 	content: '';
 	position: absolute;
 	top: 10px;
@@ -990,11 +992,113 @@ div[class~="onTop"] > .count {
 	background: #000;
 }
 
-.closeModal::before {
+.exit-Modal::before {
 	transform: rotate(45deg);
 }
 
-.closeModal::after {
+.exit-Modal::after {
 	transform: rotate(-45deg);
 }
+
+/*================================================================*/
+/* Chat */
+
+/* Основной контейнер чата */
+#chat-container {
+    /*width: 100%;*/
+    /*max-width: 600px;*/
+    height: 93vh;
+    /*background-color: #ffffff;*/
+    /*border-radius: 8px;*/
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Заголовок чата */
+#chat-header {
+    background-color: #0088cc;
+    color: #ffffff;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Секция сообщений */
+#chat {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    /*background-color: #f9f9f9;*/
+    background: #419fd9;
+	background-image: url(https://s-media-cache-ak0.pinimg.com/originals/51/ed/c0/51edc046eb80046ee4755ee71d0f19ca.jpg);
+}
+
+/* Сообщения */
+#messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Стиль для каждого сообщения */
+#messages li {
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    background-color: #dcf8c6;
+    border-radius: 10px;
+    /*max-width: 70%;*/
+    word-wrap: break-word;
+}
+
+/* Поле ввода чата и кнопка */
+#chat-input {
+    display: flex;
+
+    align-items: center;
+    /*padding: 10px;*/
+    background-color: #ffffff;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Поле ввода сообщения */
+#message {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+    background-color: #f0f2f5;
+    margin-right: 10px;
+}
+
+/* Кнопка отправки сообщения */
+/*#send-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #0088cc;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}*/
+
+/*#send-btn:hover {
+    background-color: #007ab8;
+}*/
+
+/* Иконка отправки */
+/*#send-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #ffffff;
+}*/
+
 /*================================================================*/
