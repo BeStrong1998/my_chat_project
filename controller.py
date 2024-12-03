@@ -1,7 +1,9 @@
+
 from flask import render_template, request, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
+from flask_socketio import send
 
-
+from app import socketio
 from app import app, db
 from business_logic.check_fata import check_auth_data
 from models import User
@@ -28,7 +30,7 @@ def register():
     return render_template('base.html')
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -50,6 +52,15 @@ def index():
 
 
 @app.route('/')
+@login_required
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('/'))
+
+
+# Обработчик сообщений от клиентов
+@socketio.on('message')
+def handle_message(msg):
+    print('Message:', msg)
+    # Отправляем сообщение всем подключённым клиентам
+    send(msg, broadcast=True)
