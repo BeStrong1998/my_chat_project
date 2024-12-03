@@ -1,4 +1,5 @@
-from datetime import datetime
+from datetime import datetime, timezone
+
 from app import db, app
 
 
@@ -9,6 +10,7 @@ class User(db.Model):
     login = db.Column(db.String(32), unique=True)
     password = db.Column(db.String(64))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
 
 # Создание БД, добавить всё
 with app.app_context():
