@@ -148,8 +148,8 @@ input[type="checkbox"] {
 }
 
 .me .image {
-	width: 70px;
-	height: 70px;
+	width: 100px;
+	height: 100px;
 	background: #FFF url(http://4.bp.blogspot.com/-BHhUazKytmw/VbCfWPqrOJI/AAAAAAAAB7c/qj6WVX3du-s/s1600/51b91bba5a3fd9b6c8b9c53bc0ab6c65.jpg) no-repeat center;
 	background-size: cover;
 	border-radius: 100%;
@@ -272,6 +272,7 @@ nav button > span {
 
 .configSect {
 	float: left;
+	/*height: 50vh;*/
 	width: calc(100% - 60px);
 	padding: 15px 30px;
 	margin-bottom: 10px;
@@ -565,6 +566,7 @@ div[class~="onTop"] > .fixed {
 	fill: #FFF;
 }
 
+
 div[class~="onTop"] > .count {
 	right: 49px;
 	bottom: 7px;
@@ -583,6 +585,7 @@ div[class~="onTop"] > .count {
 	color: #222;
 	background: rgba(0, 0, 0, 0.12);
 }
+
 
 .status .date {
 	position: absolute;
@@ -644,7 +647,7 @@ div[class~="onTop"] > .count {
 }
 
 .rightSide {
-	display: inline-block;
+	/*display: inline-block;*/
 	/*display: block;*/
 	clear: none;
 	float: right;
@@ -652,13 +655,16 @@ div[class~="onTop"] > .count {
 }
 
 .tbButton, .otherTools .toolButtons {
-	width: 50px;
-	height: 50px;
-	/*margin-top: 10px;*/
+	width: 40px;
+	height: 40px;
+	margin-top: 10px;
 	background: #FFF;
 	color: #888;
 	border-radius: 100%;
+	text-align: center;
 	display: inline-block;
+
+.
 }
 
 .tbButton:hover, .otherTools .toolButtons:hover {
@@ -680,7 +686,8 @@ div[class~="onTop"] > .count {
 }
 
 .userBg {
-	background: url("https://images.unsplash.com/photo-1463058837219-41e13a132b7d?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg=") 100% center;
+	/*background: url("https://images.unsplash.com/photo-1463058837219-41e13a132b7d?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg=") 100% center;*/
+	background: #419fd9;
 }
 
 .msg {
@@ -965,6 +972,7 @@ div[class~="onTop"] > .count {
 
 /*================================================================*/
 /* Кнопка закрыть на главной странице */
+/*
 .exit-Modal {
 	position: absolute;
 	top: 10px;
@@ -999,7 +1007,7 @@ div[class~="onTop"] > .count {
 .exit-Modal::after {
 	transform: rotate(-45deg);
 }
-
+*/
 /*================================================================*/
 /* Chat */
 

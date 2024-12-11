@@ -120,7 +120,8 @@ form a:hover {
 
 form button {
   /*background-color: blue;*/
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  /*background: linear-gradient(to right, #0f2027, #203a43, #2c5364);*/
+  background: #419fd9;
 }
 
 .social-auth {
@@ -175,7 +176,9 @@ a.social:hover {
 
 .focus .center {
   position: relative;
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  /*background: linear-gradient(to right, #0f2027, #203a43, #2c5364);*/
+  /*background-image: url(https://s-media-cache-ak0.pinimg.com/originals/51/ed/c0/51edc046eb80046ee4755ee71d0f19ca.jpg);*/
+  background: #419fd9;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
