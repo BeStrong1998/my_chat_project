@@ -22,9 +22,9 @@
     <!-- Sign In Form - Hidden by default -->
     <div class="form-container signin-form hide">
         <div class="signin">
-            <h2>Войти</h2>
-            <p class="alternative">Воспользуйтесь своей учетной записью электронной почты</p>
-            <form method="post" action="{{ url_for('index') }}">
+            <h2>Чат</h2>
+            <p class="alternative">Воспользуйтесь своей учетной записью для входа в систему</p>
+            <form method="post" action="{{ url_for('login') }}">
                 <input
                         type="text"
                         name="email"
@@ -39,6 +39,10 @@
                         placeholder="Пароль"
                         required
                 />
+<!--                <p class="summit">-->
+<!--                    <input type="checkbox" checked="checked" name="remember">Запомнить меня-->
+<!--                </p>-->
+                <input type="checkbox" checked="checked" name="remember">Запомнить меня
                 <a href="#" class="forgot-password">Забыли пароль?</a>
                 <button type="submit" id="signin">Войти</button>
             </form>
@@ -49,12 +53,12 @@
     <!-- Sign Up Form -->
     <div class="form-container signup-form">
         <form method="post" action="#">
-            <h2>Создать аккаунт</h2>
-            <p class="alternative">Используйте электронную почту для регистрации</p>
+            <h2>Чат</h2>
+            <p class="alternative">Создайте новый аккаунт</p>
 
             <input
                     type="text"
-                    name="username"
+                    name="login"
                     class="username"
                     placeholder="Имя"
                     required
@@ -93,7 +97,7 @@
         </div>
         <div class="signup-toggle shift">
             <h2>Добро пожаловать!</h2>
-            <p>Введи свои данные</p>
+            <p>Если нет аккаунта</p>
             <div class="btn btn-focus">
                 <button>Зарегистрироваться <a href="#"></a></button>
             </div>
