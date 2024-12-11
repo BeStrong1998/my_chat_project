@@ -44,11 +44,11 @@ def send_email(message: str, to: str, subject: str):
     server.quit()
 
 
-# Запрашиваем у пользователя ввести сообщение, адрес получателя и тему сообщения
-message = input('Введите сообщение: ')
-to = input('Введите адрес получателя: ')    # 'oamalahov@yandex.ru'
-subject = input('Введите тему сообщения: ')
-send_email(message, to, subject)
+# # Запрашиваем у пользователя ввести сообщение, адрес получателя и тему сообщения
+# message = input('Введите сообщение: ')
+# to = input('Введите адрес получателя: ')    # 'oamalahov@yandex.ru'
+# subject = input('Введите тему сообщения: ')
+# send_email(message, to, subject)
 
 
 
