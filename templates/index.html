@@ -48,7 +48,11 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                 <div class="status onTop">
                     <p class="date">00:02</p>
                     <p class="count">10</p>
-                    <i class="material-icons read">done_all</i>
+                    <i class="material-icons read">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+                        </svg>
+                    </i>
                     <svg class="fixed" viewBox="0 0 24 24">
                         <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z"/>
                     </svg>
@@ -69,9 +73,13 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                 </div>
 
                 <div class="status normal">
-                    <p class="date">Now</p>
-                    <p class="count">42</p>
-                    <i class="material-icons read">done_all</i>
+                    <p class="date">15:00</p>
+                    <p class="count">15</p>
+                    <i class="material-icons read">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
+                        </svg>
+                    </i>
                     <i class="material-icons fixed">loyalty</i>
                 </div>
             </div>
@@ -96,20 +104,24 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                         </svg>
                     </i>
                 </button>
-
                 <a href="{{ url_for('logout') }}" target="_blank">
                     <buttun class="tbButton exit">
                         <i class="material-icons">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
                             </svg>
+<!--                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">-->
+<!--                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>-->
+<!--                            </svg>-->
                         </i>
                     </buttun>
                 </a>
             </div>
 
             <div class="leftSide">
-                <p class="chatName">Анна <span>@Anna</span></p>
+                <p class="chatName">Ивн Иванов
+                    <span>@Ivan</span>
+                </p>
                 <p class="chatStatus">Online</p>
             </div>
         </div>
@@ -323,17 +335,17 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
             <div class="image"></div>
 
             <div class="myinfo">
-                <p class="name">Random Name</p>
-                <p class="phone">+1 12 1234 5678</p>
+                <p class="name">{{ current_user.login }}</p>
+                <p class="phone">+7 800 333 33 33</p>
             </div>
 
-            <button class="cloud">
-                <i class="material-icons">Закладки</i>
-            </button>
+<!--            <button class="cloud">-->
+<!--                <i class="material-icons">Закладки</i>-->
+<!--            </button>-->
 
-            <button class="settings">
-                <i class="material-icons">Настройки</i>
-            </button>
+<!--            <button class="settings">-->
+<!--                <i class="material-icons">Настройки</i>-->
+<!--            </button>-->
         </div>
         <nav>
             <button class="ng">
@@ -342,8 +354,7 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                        <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
                     </svg>
                 </i>
-
-                <span>Новая группа</span>
+                <span>Создать группу</span>
             </button>
 
             <button class="nc">
@@ -353,8 +364,7 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                         <path d="M8 4.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5M8 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4m0 3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-3.5 1.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
                     </svg>
                 </i>
-
-                <span>Новый канал</span>
+                <span>Создать канал</span>
             </button>
 
             <button class="cn">
@@ -363,11 +373,11 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
                     </svg>
                 </i>
-
                 <span>Контакты</span>
             </button>
 
-            <button class="cl">
+<!--            <button class="cl">-->
+            <button class="settings">
                 <i class="material-icons">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                         <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
@@ -385,7 +395,6 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                             <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
                         </svg>
                     </i>
-
                     <span>Поддержка</span>
                 </button>
             </a>
@@ -413,9 +422,9 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
 
 <!-- CONVERSATION OPTIONS MENU -->
 <div class="moreMenu">
-    <button class="option about">See Info</button>
-    <button class="option notify">Disable Notifications</button>
-    <button class="option block">Block User</button>
+    <button class="option about">Информация о пользователе</button>
+    <button class="option notify">Отключить уведомления</button>
+    <button class="option block">Заблокировать пользователя</button>
 </div>
 
 <!-- MOBILE OVERLAY -->
@@ -438,30 +447,30 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
             <div class="image"></div>
 
             <div class="side">
-                <p class="name">Random Name</p>
+                <p class="name">Имя пользователя</p>
                 <p class="pStatus">Online</p>
             </div>
 
-            <button class="changePic">Change Profile Picture</button>
-            <button class="edit">Edit Profile Info</button>
+            <button class="changePic">Изменить фото пользователя</button>
+            <button class="edit">Редактировать информацию пользователя</button>
         </div>
     </section>
 
     <section class="configSect second">
 
         <!-- PROFILE INFO SECTION -->
-        <p class="confTitle">Your Info</p>
+        <p class="confTitle">Мой аккаунт</p>
 
         <div class="information">
             <ul>
-                <li>Phone Number: <span class="blue phone">+1 12 1234 5678</span></li>
-                <li>Username: <span class="blue username">@USERNAME</span></li>
-                <li>Profile: <span class="blue">https://t.me/USERNAME</span></li>
+                <li>Номер телефона <span class="blue phone">+7 800 333 33 33</span></li>
+                <li>Имя пользователя <span class="blue username">@USERNAME</span></li>
+                <li>Ссылка на профиль <span class="blue">https://t.me/USERNAME</span></li>
             </ul>
         </div>
 
         <!-- NOTIFICATIONS SECTION -->
-        <p class="confTitle">Notifications</p>
+        <p class="confTitle">Уведомления</p>
 
         <div class="optionWrapper deskNotif">
             <input type="checkbox" id="deskNotif" class="toggleTracer" checked>
@@ -469,7 +478,7 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
             <label class="check deskNotif" for="deskNotif">
                 <div class="tracer"></div>
             </label>
-            <p>Enable Desktop Notifications</p>
+            <p>Включть уведомления</p>
         </div>
 
         <div class="optionWrapper showSName">
@@ -478,7 +487,7 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
             <label class="check" for="showSName">
                 <div class="tracer"></div>
             </label>
-            <p>Show Sender Name</p>
+            <p>Показать имя отправителя</p>
         </div>
 
         <div class="optionWrapper showPreview">
@@ -487,7 +496,7 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
             <label class="check" for="showPreview">
                 <div class="tracer"></div>
             </label>
-            <p>Show Message Preview</p>
+            <p>Показать предварительный просмотр сообщения</p>
         </div>
 
         <div class="optionWrapper playSounds">
@@ -496,10 +505,10 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
             <label class="check" for="playSounds">
                 <div class="tracer"></div>
             </label>
-            <p>Play Sounds</p>
+            <p>Воспроизведение звуков</p>
         </div>
 
-        <p class="confTitle">Other Settings</p>
+        <p class="confTitle">Другие настройки</p>
 
         <div class="optionWrapper">
             <input type="checkbox" id="checkNight" class="toggleTracer">
@@ -507,7 +516,7 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
             <label class="check" for="checkNight">
                 <div class="tracer"></div>
             </label>
-            <p>Night Mode</p>
+            <p>Ночной режим</p>
         </div>
 
     </section>
