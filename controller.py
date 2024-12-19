@@ -1,14 +1,14 @@
 import string
 import random
 
-from flask import render_template, request, redirect, url_for
-from flask_login import logout_user, login_required, login_user
-from flask_socketio import send
+from flask import render_template, request, redirect, url_for, session
+from flask_login import logout_user, login_required, login_user, current_user
+from flask_socketio import send, emit
 
 from mail import send_email
 from app import app, db, socketio
 from business_logic.check_fata import check_auth_data
-from models import User, EmailConfirm, DataMessage
+from models import User, EmailConfirm, Message
 
 
 @app.route('/email-confirm/<code>')
@@ -104,7 +104,19 @@ def login():
 @login_required
 # Функция главной страницы, показывает список всех пользователей и возвращает страницу с формой отправки сообщений
 def index():
-    return render_template('index.html')
+    # Получаем идентификатор пользователя из сессии
+    user_id = request.args.get('user_id')
+    print(user_id)
+
+    # Если передан идентификатор пользователя, сохраняем его в сессии
+    if user_id:
+        # Получаем информацию о конкретном пользователе
+        session['user_id'] = user_id
+
+
+    # Получение всех сообщений для отображения истории
+    messages = Message.query.order_by(Message.timestamp.asc()).all()
+    return render_template('index.html', messages=messages)
 
 
 # Обработчик выхода из учётной записи и перенаправления на главную страницу
@@ -113,6 +125,7 @@ def index():
 # Функция выхода из учётной записи и перенаправления на страницу регистрации
 def logout():
     # Выход из учётной записи и перенаправление на страницу регистрации
+    # session.pop('login', None)
     logout_user()
     return redirect(url_for('register'))
 
@@ -121,12 +134,78 @@ def logout():
 @socketio.on('message')
 # Функция обработки сообщений от клиентов
 def handle_message(msg):
-    print('Message:', msg)
+    # Получаем текущего пользователя с его сообщением
+    print({current_user.login: {'Message': msg}})
 
-    data_mes = DataMessage()
+    # Получаем текущего пользователя с его идентификатором
+    user = User.query.get(int(session['user_id']))
+    print({'Кому отправленно сообщение': user.login})
+
+    # Создаем новое сообщение с текстом и отправителем из текущего пользователя
+    new_message = Message(content=msg, sender=current_user.login, recipient=user.login)
+
+    # Добавляем новое сообщение в БД
+    db.session.add(new_message)
+    # Сохраняем изменения в БД
+    db.session.commit()
 
     # Отправляем сообщение всем подключённым клиентам
     send(msg, broadcast=True)
+
+
+# # Обработчик сообщений от клиентов
+# @socketio.on('message')
+# # Функция обработки сообщений от клиентов
+# def handle_message(msg, *args, **kwargs):
+#     # Получаем текущего пользователя с его сообщением
+#     print({current_user.login: {'Message': msg}})
+#
+#     # Создаем новое сообщение с текстом и отправителем из текущего пользователя
+#     new_message = Message(content=msg) #sender=current_user.login)
+#     # Добавляем новое сообщение в БД
+#     db.session.add(new_message)
+#     # Сохраняем изменения в БД
+#     db.session.commit()
+#
+#     # Отправляем сообщение всем подключённым клиентам
+#     send(msg, broadcast=True)
+
+
+@app.route('/chat/<username>')
+def chat(username):
+    # Получаем текущего пользователя
+    now_user = current_user.login
+
+    # Получаем пользователя с указанным именем из БД
+    user = User.query.filter_by(login=username).first()
+    if now_user == user:
+        # Если текущий пользователь и пользователь с указанным именем совпадают, перенаправляем его на страницу чата
+        return redirect(url_for('index'))
+    # Если пользователь существует, отправляем его страницу чата
+    if user:
+        return render_template('index.html')
+    # Если пользователь не существует, перенаправляем его на страницу чата с текущим пользователем
+    else:
+        return redirect(url_for('index', username=username))
+
+
+@app.route('/users')
+# Отображение списка всех пользователей
+def list_users():
+    # Получаем всех пользователей из базы данных
+    users = User.query.all()  # Получаем всех пользователей из базы данных
+    # Отправляем страницу со списком всех пользователей и полученными данными
+    return render_template('users.html', users=users)
+
+
+
+@app.route('/user/<id>')
+# Отображение информации о конкретном пользователе
+def user_info(id):
+    # Получаем пользователя из базы данных по его ID
+    user = User.query.get(id)
+    # Отправляем страницу с информацией о пользователе и полученными данными
+    return render_template('user_info.html', user=user)
 
 
 # Перенаправляем на страницу регистрации при неправильной авторизации
@@ -139,7 +218,11 @@ def redirect_to_sign(response):
     return response
 
 
+
+
+
+# Роут для тестирования
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     users = User.query.all()
-    return render_template('id.html', persons=users)
+    return render_template('admin.html', persons=users)
