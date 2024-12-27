@@ -3,7 +3,7 @@ import random
 
 from flask import render_template, request, redirect, url_for, session
 from flask_login import logout_user, login_required, login_user, current_user
-from flask_socketio import send, emit
+from flask_socketio import send
 
 from mail import send_email
 from app import app, db, socketio
@@ -16,9 +16,11 @@ from models import User, EmailConfirm, Message
 def email_confirm(code):
     # Проверяем, существует ли подтверждение с таким кодом в БД
     user_confirm = EmailConfirm.query.filter_by(code=code).first()
-    # Если подтверждение существует, то удаляем его из БД и меняем статус email_confirm у пользователя в БД
+    # Если подтверждение существует, то удаляем его из БД
+    # и меняем статус email_confirm у пользователя в БД
     if user_confirm:
-        # Ищем пользователя в БД по логину, соответствующему логину в подтверждении
+        # Ищем пользователя в БД по логину,
+        # соответствующему логину в подтверждении
         user = User.query.filter_by(login=user_confirm.login).first()
         # Если пользователь найден, то меняем его статус email_confirm на True
         user.email_confirm = True
@@ -48,11 +50,13 @@ def register():
         if check_auth_data(username, password):
             # Создаем нового пользователя
             user = User(email=email, login=username, password=password)
-            # Создаем код подтверждения email, состоящий из 32 символов (латинских букв и цифр)
+            # Создаем код подтверждения email, состоящий
+            # из 32 символов (латинских букв и цифр)
             code = ''.join(
                 [random.choice(string.ascii_letters + string.digits) for i in
                  range(32)])
-            # Создаем новую запись в таблице EmailConfirm с указанным кодом и логином
+            # Создаем новую запись в таблице EmailConfirm
+            # с указанным кодом и логином
             user_confirm = EmailConfirm(login=username, code=code)
             # print(f'Успешная регистрация! {user.email}, {user.password}')
 
@@ -64,7 +68,8 @@ def register():
             db.session.commit()
 
             # Отправляем письмо c ссылкой для подтверждения почты
-            message = f'Ссылка для подтверждения почты: http://127.0.0.1:5000/email-confirm/{code}'
+            message = (f'Ссылка для подтверждения '
+                       f'почты: http://127.0.0.1:5000/email-confirm/{code}')
             # Отправляем письмо c ссылкой на сервер
             send_email(message, email, 'Подтверждение почты')
             print(f'Успешная регистрация! {user.email}, {user.password}')
@@ -99,10 +104,12 @@ def login():
         return redirect(url_for('register'))
 
 
-# Обработчик главной страницы, показывает список всех пользователей и возвращает страницу с формой отправки сообщений
+# Обработчик главной страницы, показывает список всех пользователей
+# и возвращает страницу с формой отправки сообщений
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
-# Функция главной страницы, показывает список всех пользователей и возвращает страницу с формой отправки сообщений
+# Функция главной страницы, показывает список всех пользователей
+# и возвращает страницу с формой отправки сообщений
 def index():
     # Получаем идентификатор пользователя из сессии
     user_id = request.args.get('user_id')
@@ -112,7 +119,6 @@ def index():
     if user_id:
         # Получаем информацию о конкретном пользователе
         session['user_id'] = user_id
-
 
     # Получение всех сообщений для отображения истории
     messages = Message.query.order_by(Message.timestamp.asc()).all()
@@ -142,7 +148,8 @@ def handle_message(msg):
     print({'Кому отправленно сообщение': user.login})
 
     # Создаем новое сообщение с текстом и отправителем из текущего пользователя
-    new_message = Message(content=msg, sender=current_user.login, recipient=user.login)
+    new_message = Message(content=msg, sender=current_user.login,
+                          recipient=user.login)
 
     # Добавляем новое сообщение в БД
     db.session.add(new_message)
@@ -153,24 +160,6 @@ def handle_message(msg):
     send(msg, broadcast=True)
 
 
-# # Обработчик сообщений от клиентов
-# @socketio.on('message')
-# # Функция обработки сообщений от клиентов
-# def handle_message(msg, *args, **kwargs):
-#     # Получаем текущего пользователя с его сообщением
-#     print({current_user.login: {'Message': msg}})
-#
-#     # Создаем новое сообщение с текстом и отправителем из текущего пользователя
-#     new_message = Message(content=msg) #sender=current_user.login)
-#     # Добавляем новое сообщение в БД
-#     db.session.add(new_message)
-#     # Сохраняем изменения в БД
-#     db.session.commit()
-#
-#     # Отправляем сообщение всем подключённым клиентам
-#     send(msg, broadcast=True)
-
-
 @app.route('/chat/<username>')
 def chat(username):
     # Получаем текущего пользователя
@@ -179,12 +168,14 @@ def chat(username):
     # Получаем пользователя с указанным именем из БД
     user = User.query.filter_by(login=username).first()
     if now_user == user:
-        # Если текущий пользователь и пользователь с указанным именем совпадают, перенаправляем его на страницу чата
+        # Если текущий пользователь и пользователь с указанным именем
+        # совпадают, перенаправляем его на страницу чата
         return redirect(url_for('index'))
     # Если пользователь существует, отправляем его страницу чата
     if user:
         return render_template('index.html')
-    # Если пользователь не существует, перенаправляем его на страницу чата с текущим пользователем
+    # Если пользователь не существует, перенаправляем его на страницу чата
+    # с текущим пользователем
     else:
         return redirect(url_for('index', username=username))
 
@@ -196,7 +187,6 @@ def list_users():
     users = User.query.all()  # Получаем всех пользователей из базы данных
     # Отправляем страницу со списком всех пользователей и полученными данными
     return render_template('users.html', users=users)
-
 
 
 @app.route('/user/<id>')
@@ -216,9 +206,6 @@ def redirect_to_sign(response):
     if response.status_code == 401:
         return redirect(url_for('register'))
     return response
-
-
-
 
 
 # Роут для тестирования

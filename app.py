@@ -5,8 +5,8 @@ from flask_login import LoginManager
 
 from config import DATABASE_URL, SECRET_KEY, SQLALCHEMY_TRACK_MODIFICATIONS
 
-
-# Создание экземпляра приложения Flask и настройка его основных параметров и подключения к базе данных
+# Создание экземпляра приложения Flask и настройка его основных параметров
+# и подключения к базе данных
 app = Flask(__name__)
 
 # Настройка базы данных SQLite

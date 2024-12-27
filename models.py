@@ -3,7 +3,6 @@ from flask_login import UserMixin
 from app import db, app, manager
 
 
-
 # Создание и описание модели для подтверждения email
 class EmailConfirm(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -17,21 +16,26 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(48), unique=True)
     login = db.Column(db.String(32), unique=True)
     password = db.Column(db.String(64))
+
+    # Поле для хранения статуса подтверждения email
     email_confirm = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 
-class DataMessage(db.Model, UserMixin):
+# Создание и описание модели для сообщений
+class Message(db.Model, UserMixin):
+    # Уникальный идентификатор сообщения
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    message = db.Column(db.String(255))
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow)
-    deleted_at = db.Column(db.DateTime)
-
-    # Связь с моделью User через ForeignKey
-    user = db.relationship('User', backref=db.backref('messages', lazy=True))
-
+    # Текст сообщения
+    content = db.Column(db.Text, nullable=False)
+    # Время отправки сообщения
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    # Поле для хранения отправителя сообщения
+    sender = db.Column(db.String(50), nullable=False)
+    # Поле для хранения получателя сообщения
+    recipient = db.Column(db.String(20), nullable=False)
+    # Поле для хранения комнаты сообщения
+    # room = db.Column(db.String(50), nullable=False)
 
 
 # Создание БД, добавить всё
