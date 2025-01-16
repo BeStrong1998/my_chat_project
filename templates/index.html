@@ -5,21 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Главная страница</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style_index.css') }}"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
-<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">-->
 </head>
 <body>
-<!--
-Reference image: https://telegram.org/file/811140968/3/UfbcOfXv2YU.118417/b230905e577f9cc2de
-
-LICENSE: https://creativecommons.org/licenses/by/3.0/
--->
-
-<!-- -------- -->
-<!-- MAIN APP -->
-<!-- -------- -->
 <section class="mainApp">
     <div class="leftPanel">
         <header>
@@ -39,7 +30,7 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                     </div>
 
                     <p class="name">
-                        Иван Иванов
+                        Иван
                     </p>
 
                     <p class="message">Как дела?</p>
@@ -49,7 +40,8 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                     <p class="date">00:02</p>
                     <p class="count">10</p>
                     <i class="material-icons read">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-check" viewBox="0 0 16 16">
                             <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
                         </svg>
                     </i>
@@ -76,7 +68,8 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                     <p class="date">15:00</p>
                     <p class="count">15</p>
                     <i class="material-icons read">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-check" viewBox="0 0 16 16">
                             <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
                         </svg>
                     </i>
@@ -91,7 +84,8 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
             <div class="rightSide">
                 <button class="tbButton search">
                     <i class="material-icons">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                             class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                         </svg>
                     </i>
@@ -99,7 +93,8 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
 
                 <button class="tbButton otherOptions">
                     <i class="material-icons">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                             class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
                             <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
                         </svg>
                     </i>
@@ -107,12 +102,10 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                 <a href="{{ url_for('logout') }}" target="_blank">
                     <buttun class="tbButton exit">
                         <i class="material-icons">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-x-lg" viewBox="0 0 16 16">
                                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
                             </svg>
-<!--                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">-->
-<!--                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>-->
-<!--                            </svg>-->
                         </i>
                     </buttun>
                 </a>
@@ -127,21 +120,26 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
         </div>
 
         <div id="chat-container">
-<!--            <div id="chat-header">Это чат</div>-->
             <div id="chat">
-                <ul id="messages"></ul>
+                <ul id="messages">
+                    <!-- Загружаем старые сообщения -->
+                    {% for message in messages %}
+                    <li>{{ message.content }}</li>
+                    {% endfor %}
+                </ul>
             </div>
 
             <div id="chat-input">
-                 <div class="replyBar">
+                <div class="replyBar">
                     <button class="attach">
                         <i class="material-icons d45">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                                 class="bi bi-paperclip" viewBox="0 0 16 16">
                                 <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
                             </svg>
                         </i>
                     </button>
-                 </div>
+                </div>
                 <input id="message" placeholder="Написать сообщение..." autocomplete="off">
                 <div class="replyBar">
                     <div class="emojiBar">
@@ -174,7 +172,8 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                     <div class="otherTools">
                         <button class="toolButtons emoji">
                             <i class="material-icons">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                     class="bi bi-emoji-smile" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                                     <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5"/>
                                 </svg>
@@ -183,7 +182,8 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
 
                         <button class="toolButtons audio">
                             <i class="material-icons">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                     class="bi bi-mic-fill" viewBox="0 0 16 16">
                                     <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0z"/>
                                     <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
                                 </svg>
@@ -191,14 +191,8 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                         </button>
                     </div>
                 </div>
-<!--                <button id="send-btn" onclick="sendMessage()">-->
-<!--                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">-->
-<!--                        <path d="M2.01 21l20.99-9-20.99-9-.01 7 15 2-15 2z"/>-->
-<!--                    </svg>-->
-<!--                </button>-->
             </div>
         </div>
-
         <script>
             var socket = io.connect('http://' + document.domain + ':' + location.port);
 
@@ -228,99 +222,6 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                 }
             });
         </script>
-
-<!--        <div class="convHistory userBg">-->
-<!--            &lt;!&ndash; CONVERSATION GOES HERE! &ndash;&gt;-->
-
-<!--            <div class="msg messageReceived">-->
-<!--                Чувак, почему никто не сделал этого раньше?-->
-<!--                <span class="timestamp">00:00</span>-->
-<!--            </div>-->
-
-<!--            <div class="msg messageSent">-->
-<!--                Не знаю...-->
-<!--                <i class="material-icons readStatus">done_all</i>-->
-<!--                <span class="timestamp">00:01</span>-->
-<!--            </div>-->
-
-<!--            <div class="msg messageReceived">-->
-<!--                Теперь это не имеет значения, я сделал это!-->
-<!--                <span class="timestamp">00:02</span>-->
-<!--            </div>-->
-
-<!--            <div class="msg messageReceived">-->
-<!--                Надеюсь, кто-нибудь увидит это... Когда-нибудь...-->
-<!--                <span class="timestamp">00:02</span>-->
-<!--            </div>-->
-
-<!--            <div class="msg messageSent">-->
-<!--                На самом деле, это сделали более 2000 человек.-->
-<!--                <i class="material-icons readStatus">done</i>-->
-<!--                <span class="timestamp">00:04</span>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div class="replyBar">-->
-<!--                Кнопка прикрепления (скрепка)-->
-<!--            <button class="attach">-->
-<!--                <i class="material-icons d45">-->
-<!--                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16">-->
-<!--                        <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>-->
-<!--                    </svg>-->
-<!--                </i>-->
-<!--            </button>-->
-
-<!--            <input type="text" class="replyMessage" placeholder="Написать сообщение..."/>-->
-
-
-
-<!--            <div class="emojiBar">-->
-<!--                <div class="emoticonType">-->
-<!--                    <button id="panelEmoji">Эмодзи</button>-->
-<!--                    <button id="panelStickers">Стикеры</button>-->
-<!--                    <button id="panelGIFs">GIF</button>-->
-<!--                </div>-->
-
-<!--                &lt;!&ndash; Emoji panel &ndash;&gt;-->
-<!--                <div class="emojiList">-->
-<!--                    <button id="smileface" class="pick">-->
-<!--                    </button>-->
-<!--                    <button id="grinningface" class="pick"></button>-->
-<!--                    <button id="tearjoyface" class="pick"></button>-->
-<!--                    <button id="rofl" class="pick"></button>-->
-<!--                    <button id="somface" class="pick"></button>-->
-<!--                    <button id="swfface" class="pick"></button>-->
-<!--                </div>-->
-
-                <!-- the best part of telegram ever: STICKERS!! -->
-<!--                <div class="stickerList">-->
-<!--                    <button id="smileface" class="pick">-->
-<!--                    </button>-->
-<!--                    <button id="grinningface" class="pick"></button>-->
-<!--                    <button id="tearjoyface" class="pick"></button>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <div class="otherTools">-->
-<!--                <button class="toolButtons emoji">-->
-<!--                    <i class="material-icons">-->
-<!--                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">-->
-<!--                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>-->
-<!--                            <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5"/>-->
-<!--                        </svg>-->
-<!--                    </i>-->
-<!--                </button>-->
-
-<!--                <button class="toolButtons audio">-->
-<!--                    <i class="material-icons">-->
-<!--                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">-->
-<!--                            <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0z"/>-->
-<!--                            <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>-->
-<!--                        </svg>-->
-<!--                    </i>-->
-<!--                </button>-->
-<!--            </div>-->
-<!--        </div>-->
     </div>
 </section>
 
@@ -333,25 +234,17 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
     <div class="menu">
         <div class="me userBg">
             <div class="image"></div>
-
             <div class="myinfo">
                 <p class="name">{{ current_user.login }}</p>
                 <p class="phone">+7 800 333 33 33</p>
             </div>
-
-<!--            <button class="cloud">-->
-<!--                <i class="material-icons">Закладки</i>-->
-<!--            </button>-->
-
-<!--            <button class="settings">-->
-<!--                <i class="material-icons">Настройки</i>-->
-<!--            </button>-->
         </div>
         <nav>
             <button class="ng">
                 <i class="material-icons">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
-                       <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-people" viewBox="0 0 16 16">
+                        <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
                     </svg>
                 </i>
                 <span>Создать группу</span>
@@ -359,7 +252,8 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
 
             <button class="nc">
                 <i class="material-icons">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speaker" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-speaker" viewBox="0 0 16 16">
                         <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
                         <path d="M8 4.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5M8 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4m0 3a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-3.5 1.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
                     </svg>
@@ -367,19 +261,21 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
                 <span>Создать канал</span>
             </button>
 
-            <button class="cn">
-                <i class="material-icons">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
-                    </svg>
-                </i>
-                <span>Контакты</span>
-            </button>
-
-<!--            <button class="cl">-->
+            <a href="/users">
+                <button class="cn">
+                    <i class="material-icons">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-person" viewBox="0 0 16 16">
+                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                        </svg>
+                    </i>
+                    <span>Контакты</span>
+                </button>
+            </a>
             <button class="settings">
                 <i class="material-icons">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-gear" viewBox="0 0 16 16">
                         <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0"/>
                         <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z"/>
                     </svg>
@@ -390,7 +286,8 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
             <a href="https://telegram.org/faq" target="_blank">
                 <button class="faq">
                     <i class="material-icons">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-question-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                             <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94"/>
                         </svg>
@@ -402,21 +299,18 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
             <a href="{{ url_for('logout') }}" target="_blank">
                 <button class="lo">
                     <i class="material-icons">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
-                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                            <path fill-rule="evenodd"
+                                  d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
                         </svg>
                     </i>
-                     <span>Выйти</span>
+                    <span>Выйти</span>
                 </button>
             </a>
         </nav>
-
-<!--        <div class="info">-->
-<!--            <p>Telegram Web</p>-->
-<!--            <p>Ver 0.0.2 - <a href="https://en.wikipedia.org/wiki/Telegram_(messaging_service)">About</a></p>-->
-<!--            <p>Layout coded by: <a href="https://www.github.com/mayrinck">Mayrinck</a></p>-->
-<!--        </div>-->
     </div>
 </section>
 
@@ -532,6 +426,8 @@ LICENSE: https://creativecommons.org/licenses/by/3.0/
     Trying to reconnect...
 </div>
 <script src="{{ url_for('static', filename='js/index_script.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>

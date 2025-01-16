@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, li {
+            border: 1px solid #ddd;
+        }
+        li {
+            padding: 10px;
+            text-align: left;
+        }
+        p {
+            background-color: #f4f4f4;
+        }
+        li:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Админка</h1>
+    <table>
+        <thead>
+            <tr>
+                <p>
+                    {% for i in persons %}
+                        {% if i.login != 'admin' %}
+                            <li>{{ i.id }}) {{ i.login }} является Пользователем</li>
+                        {% elif i.login == 'admin' %}
+                            <li>{{ i.id }}) {{ i.login }} является Администратором</li>
+                        {% endif %}
+                    {% endfor %}
+                </p>
+            </tr>
+        </thead>
+    </table>
+</body>
+</html>
