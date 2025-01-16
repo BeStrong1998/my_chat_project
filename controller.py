@@ -276,6 +276,7 @@ def chat(username: str) -> Response or str:
         Returns:
             str: шаблон страницы index.html
     """
+
     # Получаем текущего пользователя
     now_user = current_user.login
 
@@ -303,28 +304,37 @@ def list_users() -> str:
         Получение всех авторизованных пользователей из БД;
 
         Returns:
-            str: шаблон страницы users.html
+            str: шаблон страницы users.html или 500.html
     """
     # Получаем всех пользователей из базы данных
-    users = User.query.all()  # Получаем всех пользователей из базы данных
-    # Отправляем страницу со списком всех пользователей и полученными данными
-    return render_template('users.html', users=users)
+    try:
+        users = User.query.all()  # Получаем всех пользователей из базы данных
+        # Отправляем страницу со списком всех пользователей и полученными данными
+        return render_template('users.html', users=users)
+    except Exception as e:
+        print(f'Ошибка при получении пользователей: {e}')
+        return render_template('errors/500.html')
 
 
 # Перенаправляем на страницу регистрации при неправильной авторизации
 @app.after_request
 # Функция перенаправления на страницу регистрации при неправильной авторизации
-def redirect_to_sign(response: Response) -> Response:
+def redirect_to_sign(response: Response) -> Response or str:
     """
         Обработка ошибки 401
 
         Returns:
             Response: вызывает функцию register
+            str: шаблон страницы 500.html
     """
-    # Если клиент авторизован, перенаправлять его не нужно
-    if response.status_code == 401:
-        return redirect(url_for('register'))
-    return response
+    try:
+        # Если клиент авторизован, перенаправлять его не нужно
+        if response.status_code == 401:
+            return redirect(url_for('register'))
+        return response
+    except Exception as e:
+        print(f'Ошибка при обработке ошибки 401: {e}')
+        return render_template('errors/500.html')
 
 
 # Админка
@@ -336,7 +346,11 @@ def admin() -> str:
         Админ панель со всеми зарегистрированными пользователями;
 
         Returns:
-            str: перенаправляем на admin панель
+            str: получение шаблона admin.html или 500.html
     """
-    users = User.query.all()
-    return render_template('admin.html', persons=users)
+    try:
+        users = User.query.all()
+        return render_template('admin.html', persons=users)
+    except Exception as e:
+        print(f'Ошибка при получении пользователей: {e}')
+        return render_template('errors/500.html')
