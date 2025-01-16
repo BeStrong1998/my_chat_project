@@ -6,7 +6,19 @@ from config import EMAIL_LOGIN, EMAIL_PASSWORD
 
 
 # Функция создания сообщения с указанными адресатом и темой
-def get_msg(to: str, subject: str):
+def get_msg(to: str, subject: str) -> MIMEMultipart:
+    """
+        Создание сообщения.
+
+        Cоздание сообщения с указанными адресатом и темой.
+
+        Args:
+            to: str (первое параметр)
+            subject: str (второй параметр)
+
+        Returns:
+            MIMEMultipart: созданное сообщение
+    """
     # Создаем объект MIMEMultipart для создания сообщения с разными частями
     msg = MIMEMultipart()
 
@@ -23,11 +35,20 @@ def get_msg(to: str, subject: str):
 
 
 # Функция отправки сообщения по указанному адресу и теме
-def send_email(message: str, to: str, subject: str):
+def send_email(message: str, to: str, subject: str) -> None:
     # Вводим текст сообщения с клавиатуры (необязательно,
     # но удобно для проверки работы функции)
     # message = input('Введите сообщение: ')
+    """
+        Отпрвление сообщения.
 
+        Отправка сообщения по указанному адресу и теме.
+
+        Args:
+            message: str (первый параметр)
+            to: str (второй параметр)
+            subject: str (третий параметр)
+    """
     # Создаем сообщение с указанными адресатом и темой
     msg = get_msg(to, subject)
     # Добавляем текстовую часть сообщения во вложение

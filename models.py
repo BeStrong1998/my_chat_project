@@ -45,5 +45,16 @@ with app.app_context():
 
 # Загрузка пользователя из БД
 @manager.user_loader
-def load_user(user_id):
+def load_user(user_id: int) -> int:
+    """
+        Выгрузка из БД
+
+        Загрузка пользователя из БД;
+
+        Args:
+            user_id: int (первый параметр)
+
+        Returns:
+            int: id пользователя
+    """
     return User.query.get(user_id)
