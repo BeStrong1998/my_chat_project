@@ -1,3 +1,5 @@
+"""Модуль для запуска приложения"""
+
 from app import socketio
 
 from errors import app

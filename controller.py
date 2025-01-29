@@ -1,3 +1,5 @@
+"""Модуль с роутами проекта"""
+
 import string
 import random
 
@@ -12,24 +14,25 @@ from business_logic.check_fata import check_auth_data
 from models import User, EmailConfirm, Message
 
 
+
 @app.route('/email-confirm/<code>')
 # Функция для подтверждения email
 def email_confirm(code: int) -> Response or str:
     """
-        Подтверждение email
+    Подтверждение email
 
-        Проверяем, существует ли подтверждение в БД
-        Если подтверждение существует, то удаляем его из БД
-        и меняем статус email_confirm у пользователя в БД
-        Если подтверждение не существует,
-        то перенаправляем на страницу регистрации;
+    Проверяем, существует ли подтверждение в БД
+    Если подтверждение существует, то удаляем его из БД
+    и меняем статус email_confirm у пользователя в БД
+    Если подтверждение не существует,
+    то перенаправляем на страницу регистрации;
 
-        Args:
-            code: int (код подтверждения)
+    Args:
+        code: int (код подтверждения)
 
-        Returns:
-            str: шаблон страницы 500.html
-            Response: перенаправление на страницу register
+    Returns:
+        str: шаблон страницы 500.html
+        Response: перенаправление на страницу register
     """
     try:
         # Проверяем, существует ли подтверждение с таким кодом в БД
@@ -51,8 +54,8 @@ def email_confirm(code: int) -> Response or str:
             db.session.commit()
         # Отправляем подтверждение на указанный email
         return redirect(url_for('register'))
+
     except Exception as e:
-        print(f'Ошибка при подтверждении email: {e}')
         return render_template('errors/500.html')
 
 
@@ -61,101 +64,93 @@ def email_confirm(code: int) -> Response or str:
 # Функция регистрации нового пользователя
 def register() -> str:
     """
-       Страница регистрации
+    Страница регистрации
 
-       Пользователь переходит на страницу регистрации, вводит данные,
-       нажимает кнопку "Регистрация", и если данные корректны,
-       регистрируется новый пользователь в БД;
+    Пользователь переходит на страницу регистрации, вводит данные,
+    нажимает кнопку "Регистрация", и если данные корректны,
+    регистрируется новый пользователь в БД;
 
-       Returns:
-           str: шаблон страницы 500.html или base.html
+    Returns:
+       str: шаблон страницы 500.html или base.html
     """
     try:
-        # Если это POST-запрос, значит была нажата кнопка "Регистрация"
-        if request.method == 'POST':
-            # Получаем данные из формы регистрации
-            email = request.form.get('email')
-            username = request.form.get('login')
-            password = request.form.get('password')
-            print(email, username, password)
+        # Если пользователь заходит на страницу регистрации первый раз
+        if request.method == 'GET':
+            return render_template('base.html')
 
-            # Проверяем корректность введенных данных
-            if check_auth_data(username, password):
-                # Создаем нового пользователя
-                user = User(email=email, login=username, password=password)
-                # Создаем код подтверждения email, состоящий
-                # из 32 символов (латинских букв и цифр)
-                code = ''.join(
-                    [random.choice(string.ascii_letters + string.digits)
-                     for i in range(32)])
-                # Создаем новую запись в таблице EmailConfirm
-                # с указанным кодом и логином
-                user_confirm = EmailConfirm(login=username, code=code)
-                # print(f'Успешная регистрация! {user.email}, {user.password}')
+        # Получаем данные из формы регистрации
+        email = request.form.get('email')
+        username = request.form.get('login')
+        password = request.form.get('password')
 
-                # Формируем сессии для последующего добавления в БД
-                db.session.add(user)
-                # Сохранение в базу данных всех сформированных сессий одним
-                # комитом
-                db.session.add(user_confirm)
-                # Сохранение в базу данных всех сформированных сессий одним
-                # комитом
-                db.session.commit()
+        # Проверяем корректность введенных данных
+        if check_auth_data(username, password):
+            # Создаем нового пользователя
+            user = User(email=email, login=username, password=password)
+            # Создаем код подтверждения email, состоящий
+            # из 32 символов (латинских букв и цифр)
+            code = ''.join(
+                [random.choice(string.ascii_letters + string.digits)
+                 for i in range(32)])
+            # Создаем новую запись в таблице EmailConfirm
+            # с указанным кодом и логином
+            user_confirm = EmailConfirm(login=username, code=code)
+            # print(f'Успешная регистрация! {user.email}, {user.password}')
 
-                # Отправляем письмо с сылкой для подтверждения почты
-                message = (f'Ссылка для подтверждения '
-                           f'почты: http://127.0.0.1:5000/email-confirm/'
-                           f'{code}')
-                # Отправляем письмо c сылкой на сервер
-                send_email(message, email, 'Подтверждение почты')
-                print(f'Успешная регистрация! {user.email}, {user.password}')
-            else:
-                print('Неверные данные при регистрации!')
+            # Формируем сессии для последующего добавления в БД
+            db.session.add(user)
+            # Сохранение в базу данных всех сформированных сессий одним
+            # комитом
+            db.session.add(user_confirm)
+            # Сохранение в базу данных всех сформированных сессий одним
+            # комитом
+            db.session.commit()
 
-        return render_template('base.html')
+            # Отправляем письмо с сылкой для подтверждения почты
+            message = (f'Ссылка для подтверждения '
+                       f'почты: http://127.0.0.1:5000/email-confirm/'
+                       f'{code}')
+            # Отправляем письмо c сылкой на сервер
+            send_email(message, email, 'Подтверждение почты')
+            return render_template('base.html')
 
     except Exception as e:
-        print(f'Ошибка при регистрации: {e}')
         return render_template('errors/500.html')
 
 
 @app.route('/login', methods=['POST'])
 # Функция авторизации пользователя
 def login() -> Response or str:
+
     """
-       Страница авторизации
+    Страница авторизации
 
-       Пользователь авторизуется, далее проверяет почту и пароль,
-       если есть перенаправляет на главную страницу, если нет направляет на
-       страницу регистрации;
+    Пользователь авторизуется, далее проверяет почту и пароль,
+    если есть перенаправляет на главную страницу, если нет направляет на
+    страницу регистрации;
 
-       Returns:
-           str: шаблон страницы index.html или register
+    Returns:
+        str: шаблон страницы index.html или register
     """
     try:
         # Проверка наличия введённых данных авторизации
-        if request.method == 'POST':
-            email = request.form.get('email')
-            password = request.form.get('password')
+        email = request.form.get('email')
+        password = request.form.get('password')
 
-            # Чтение данных
-            user = User.query.filter_by(email=email, password=password).first()
+        # Чтение данных
+        user = User.query.filter_by(email=email, password=password).first()
 
-            # Проверка наличия пользователя в БД и наличие соответствующих
-            # паролей
-            if user and user.email_confirm:
-                print(f'Успешная авторизация! {user.email}, {user.password}')
-                # Выполняем логин пользователя
-                login_user(user)
-                # В случае успешной авторизации перенаправляем на главную
-                # страницу
-                return redirect(url_for('index'))
-            # Если данные неверны, выводим сообщение "Ошибка авторизации"
-            print('Ошибка авторизации!')
-            # Если данные неверны, перенаправляем на страницу регистрации
-            return redirect(url_for('register'))
+        # Проверка наличия пользователя в БД и наличие соответствующих
+        # паролей
+        if user and user.email_confirm:
+            # Выполняем логин пользователя
+            login_user(user)
+            # В случае успешной авторизации перенаправляем на главную
+            # страницу
+            return redirect(url_for('index'))
+        return redirect(url_for('register'))
+
     except Exception as e:
-        print(f'Ошибка при авторизации: {e}')
         return render_template('errors/500.html')
 
 
@@ -167,17 +162,17 @@ def login() -> Response or str:
 # и возвращает страницу с формой отправки сообщений
 def index() -> str:
     """
-       Главная страница
+    Главная страница
 
-       Авторизованный пользователь переходит на главную страницу
-       index.html. Может перейти в контакты и отправить сообщение выбранному
-       авторизованному пользователю. Все отправленные сообщения остаются в
-       форме на главной странице и записываются в базу данных,
-       так же как и кто, кому и когда отправил сообщение;
+    Авторизованный пользователь переходит на главную страницу
+    index.html. Может перейти в контакты и отправить сообщение выбранному
+    авторизованному пользователю. Все отправленные сообщения остаются в
+    форме на главной странице и записываются в базу данных,
+    так же как и кто, кому и когда отправил сообщение;
 
-       Returns:
-           str: шаблон страницы index.html
-       """
+    Returns:
+        str: шаблон страницы index.html
+    """
     try:
         # Получаем идентификатор пользователя из сессии
         user_id = request.args.get('user_id')
@@ -193,7 +188,6 @@ def index() -> str:
         return render_template('index.html',
                                messages=messages)
     except Exception as e:
-        print(f'Ошибка при получении и отображении сообщений: {e}')
         return render_template('errors/500.html')
 
 
@@ -203,20 +197,20 @@ def index() -> str:
 # Функция выхода из учётной записи и перенаправления на страницу регистрации
 def logout() -> Response or str:
     """
-       Разлогиниться
+    Разлогиниться
 
-       Выход из учётной записи и перенаправление на страницу регистрации;
+    Выход из учётной записи и перенаправление на страницу регистрации;
 
-       Returns:
-           str: шаблон страницы index.html
-           Response: вызывает функцию register
-   """
+    Returns:
+        str: шаблон страницы index.html
+        Response: вызывает функцию register
+    """
     try:
         # Выход из учётной записи и перенаправление на страницу регистрации
         logout_user()
         return redirect(url_for('register'))
+
     except Exception as e:
-        print(f'Ошибка при выходе из учётной записи: {e}')
         return render_template('errors/500.html')
 
 
@@ -225,15 +219,15 @@ def logout() -> Response or str:
 # Функция обработки сообщений от клиентов
 def handle_message(msg: str) -> None or str:
     """
-        Обработчик сообщений
+    Обработчик сообщений
 
-        Получает текущего пользователя с его сообщением.
-        Создаёт новое сообщение с текстом и отправителем из текущего
-        пользователя. Сохраняет сообщение в БД. Отправляет сообщение всем
-        подключённым клиентам.
+    Получает текущего пользователя с его сообщением.
+    Создаёт новое сообщение с текстом и отправителем из текущего
+    пользователя. Сохраняет сообщение в БД. Отправляет сообщение всем
+    подключённым клиентам.
 
-        Args:
-            msg: str (сообщение)
+    Args:
+        msg: str (сообщение)
 
         Returns:
             str: шаблон страницы index.html
@@ -244,7 +238,6 @@ def handle_message(msg: str) -> None or str:
 
         # Получаем текущего пользователя с его идентификатором
         user = User.query.get(int(session['user_id']))
-        print({'Кому отправлено сообщение': user.login})
 
         # Создаем новое сообщение с текстом и отправителем из текущего
         # пользователя
@@ -259,22 +252,21 @@ def handle_message(msg: str) -> None or str:
         # Отправляем сообщение всем подключённым клиентам
         send(msg, broadcast=True)
     except Exception as e:
-        print(f'Ошибка при обработке сообщения: {e}')
         return render_template('errors/404.html')
 
 
 @app.route('/chat/<username>')
 def chat(username: str) -> Response or str:
     """
-        Переход на страницу пользователя
+    Переход на страницу пользователя
 
-        Получает страницу выбранного авторизованного пользователя
+    Получает страницу выбранного авторизованного пользователя
 
-        Args:
-            username: str (сообщение)
+    Args:
+        username: str (сообщение)
 
-        Returns:
-            str: шаблон страницы index.html
+    Returns:
+        str: шаблон страницы index.html
     """
 
     # Получаем текущего пользователя
@@ -299,20 +291,20 @@ def chat(username: str) -> Response or str:
 # Отображение списка всех пользователей
 def list_users() -> str:
     """
-        Получение пользователей
+    Получение пользователей
 
-        Получение всех авторизованных пользователей из БД;
+    Получение всех авторизованных пользователей из БД;
 
-        Returns:
-            str: шаблон страницы users.html или 500.html
+    Returns:
+        str: шаблон страницы users.html или 500.html
     """
     # Получаем всех пользователей из базы данных
     try:
         users = User.query.all()  # Получаем всех пользователей из базы данных
         # Отправляем страницу со списком всех пользователей и полученными данными
         return render_template('users.html', users=users)
+
     except Exception as e:
-        print(f'Ошибка при получении пользователей: {e}')
         return render_template('errors/500.html')
 
 
@@ -321,19 +313,19 @@ def list_users() -> str:
 # Функция перенаправления на страницу регистрации при неправильной авторизации
 def redirect_to_sign(response: Response) -> Response or str:
     """
-        Обработка ошибки 401
+    Обработка ошибки 401
 
-        Returns:
-            Response: вызывает функцию register
-            str: шаблон страницы 500.html
+    Returns:
+        Response: вызывает функцию register
+        str: шаблон страницы 500.html
     """
     try:
         # Если клиент авторизован, перенаправлять его не нужно
         if response.status_code == 401:
             return redirect(url_for('register'))
         return response
+
     except Exception as e:
-        print(f'Ошибка при обработке ошибки 401: {e}')
         return render_template('errors/500.html')
 
 
@@ -341,16 +333,16 @@ def redirect_to_sign(response: Response) -> Response or str:
 @app.route('/admin', methods=['GET', 'POST'])
 def admin() -> str:
     """
-        Админ панель
+    Админ панель
 
-        Админ панель со всеми зарегистрированными пользователями;
+    Админ панель со всеми зарегистрированными пользователями;
 
-        Returns:
-            str: получение шаблона admin.html или 500.html
+    Returns:
+        str: получение шаблона admin.html или 500.html
     """
     try:
         users = User.query.all()
         return render_template('admin.html', persons=users)
+
     except Exception as e:
-        print(f'Ошибка при получении пользователей: {e}')
         return render_template('errors/500.html')

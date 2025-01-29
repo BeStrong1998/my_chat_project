@@ -1,3 +1,5 @@
+"""Модуль для реализации подтверждения авторизации через почту"""
+
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -8,16 +10,16 @@ from config import EMAIL_LOGIN, EMAIL_PASSWORD
 # Функция создания сообщения с указанными адресатом и темой
 def get_msg(to: str, subject: str) -> MIMEMultipart:
     """
-        Создание сообщения.
+    Создание сообщения.
 
-        Cоздание сообщения с указанными адресатом и темой.
+    Cоздание сообщения с указанными адресатом и темой.
 
-        Args:
-            to: str (первое параметр)
-            subject: str (второй параметр)
+    Args:
+        to: str (первое параметр)
+        subject: str (второй параметр)
 
-        Returns:
-            MIMEMultipart: созданное сообщение
+    Returns:
+        MIMEMultipart: созданное сообщение
     """
     # Создаем объект MIMEMultipart для создания сообщения с разными частями
     msg = MIMEMultipart()
@@ -40,14 +42,14 @@ def send_email(message: str, to: str, subject: str) -> None:
     # но удобно для проверки работы функции)
     # message = input('Введите сообщение: ')
     """
-        Отпрвление сообщения.
+    Отпрвление сообщения.
 
-        Отправка сообщения по указанному адресу и теме.
+    Отправка сообщения по указанному адресу и теме.
 
-        Args:
-            message: str (первый параметр)
-            to: str (второй параметр)
-            subject: str (третий параметр)
+    Args:
+        message: str (первый параметр)
+        to: str (второй параметр)
+        subject: str (третий параметр)
     """
     # Создаем сообщение с указанными адресатом и темой
     msg = get_msg(to, subject)

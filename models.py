@@ -1,3 +1,5 @@
+"""Модуль с моделями для БД проекта"""
+
 from datetime import datetime
 from flask_login import UserMixin
 from app import db, app, manager
@@ -23,7 +25,7 @@ class User(db.Model, UserMixin):
 
 
 # Создание и описание модели для сообщений
-class Message(db.Model, UserMixin):
+class Message(db.Model):
     # Уникальный идентификатор сообщения
     id = db.Column(db.Integer, primary_key=True)
     # Текст сообщения
@@ -47,14 +49,14 @@ with app.app_context():
 @manager.user_loader
 def load_user(user_id: int) -> int:
     """
-        Выгрузка из БД
+    Выгрузка из БД
 
-        Загрузка пользователя из БД;
+    Загрузка пользователя из БД;
 
-        Args:
-            user_id: int (первый параметр)
+    Args:
+        user_id: int (первый параметр)
 
-        Returns:
-            int: id пользователя
+    Returns:
+        int: id пользователя
     """
     return User.query.get(user_id)

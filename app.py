@@ -1,3 +1,5 @@
+"""Модуль с настройками проекта"""
+
 from flask_socketio import SocketIO
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
